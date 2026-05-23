@@ -34,9 +34,9 @@ jobs:
                     - name: Instalando dependências
                       run: yarn
 
-                    # instalação dps browsers do playrwright
-                    - name: Instalando os browsers do playrwright
-                      run: yarn playrwright install
+                    # instalação dps browsers do playwright
+                    - name: Instalando os browsers do playwright
+                      run: yarn playwright install
 
                     # executar os testes e2e
                     - name: Executando os testes e2e
