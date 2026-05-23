@@ -3,7 +3,7 @@
 # nome da pipeline
 name: 'Execução Manual'
 
-#  gatilhos / triggers - regras de disparo
+# gatilhos / triggers - regras de disparo
 # gatilho manual = workflow_dispatch
 
 on:
