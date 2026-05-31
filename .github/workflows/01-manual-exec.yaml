@@ -38,7 +38,7 @@ jobs:
                     - name: Instalando os browsers do playwright
                       run: yarn playwright install
 
-                    # executar os testes e2e
+                    # executar os testes end twwo end - e2e
                     - name: Executando os testes e2e
                       run: yarn run e2e    
 
@@ -55,4 +55,3 @@ jobs:
                           uses: foo-software/lighthouse-check-action@master
                           with:
                             urls: 'https://www.foo.software,https://www.google.com'
-                    
