@@ -47,6 +47,6 @@ jobs:
                       uses: dorny/test-reporter@v1
                       if: always() # Garante que o reporter rode mesmo se os passos anteriores falharem
                       with:
-                      name: Resultados dos Testes JS # Nome que aparecerá nas checks do GitHub
-                      path: test-results.xml # Caminho onde sua ferramenta salvou o relatório XML
-                      reporter: mocha-json # Formato do relatório (use 'mocha-json' ou 'java-junit' conforme sua lib)
+                        name: Resultados dos Testes JS # Nome que aparecerá nas checks do GitHub
+                        path: test-results.xml # Caminho onde sua ferramenta salvou o relatório XML
+                        reporter: mocha-json # Formato do relatório (use 'mocha-json' ou 'java-junit' conforme sua lib)
