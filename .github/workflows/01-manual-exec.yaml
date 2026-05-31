@@ -43,8 +43,7 @@ jobs:
                       run: yarn run e2e    
 
                     # plugin lighthouse check
-                      name: Lighthouse
-                        on:[pull_request]
+
 
                       jobs:
                        lighthouse:
