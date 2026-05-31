@@ -44,7 +44,7 @@ jobs:
 
                     # plugin lighthouse check
                       name: Lighthouse
-                        on: [pull_request]
+                        on:[pull_request]
 
                       jobs:
                        lighthouse:
