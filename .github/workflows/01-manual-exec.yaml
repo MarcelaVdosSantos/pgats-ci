@@ -48,5 +48,5 @@ jobs:
                       if: always() # Garante que o reporter rode mesmo se os passos anteriores falharem
                       with:
                         name: Resultados dos Testes JS # Nome que aparecerá nas checks do GitHub
-                        path: test-results.xml # Caminho onde sua ferramenta salvou o relatório XML
+                        path: C:\Projetos\Integração contínua e Testes Automatizados\pgats-ci\reports\coverage\lcov-report\index.html # Caminho onde sua ferramenta salvou o relatório XML
                         reporter: mocha-json # Formato do relatório (use 'mocha-json' ou 'java-junit' conforme sua lib)
