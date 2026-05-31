@@ -40,17 +40,13 @@ jobs:
 
                     # executar os testes end twwo end - e2e
                     - name: Executando os testes e2e
-                      run: yarn run e2e    
+                      run: yarn run e2e
 
-                    # plugin lighthouse check
-
-
-                      jobs:
-                       lighthouse:
-                        runs-on: ubuntu-latest
-                        steps:
-                        - uses: actions/checkout@master
-                        - name: Lighthouse
-                          uses: foo-software/lighthouse-check-action@master
-                          with:
-                            urls: 'https://www.foo.software,https://www.google.com'
+                    # PLUGIN test reporter https://github.com/marketplace/actions/test-reporter
+                    - name: Test Report
+                      uses: dorny/test-reporter@v3
+                      if: ${{ !cancelled() }}       # run this step even if previous step failed
+                      with:
+                        name: JEST Tests            # Name of the check run which will be created
+                        path: reports/jest-*.xml    # Path to test results
+                        reporter: jest-junit        # Format of test results    
