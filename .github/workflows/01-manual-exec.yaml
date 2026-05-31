@@ -42,3 +42,6 @@ jobs:
                     - name: Executando os testes e2e
                       run: yarn run e2e    
 
+                    # gerar relatório
+                    - name: Test Reporter
+                      uses: dorny/test-reporter@v3.0.0
