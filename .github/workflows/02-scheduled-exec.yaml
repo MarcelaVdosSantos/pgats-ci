@@ -10,8 +10,8 @@ on:
   schedule: 
     # cronograma de execução
     # 1 - minuto, 2 - hora, 3 dia dos Mês, 4 - mês, 5 - dia da semana
-    - cron: '55 13 * * 6'
-
+    - cron: '04 14 * * 6'
+      timezone: 'America/Sao_Paulo'
 
 
 # tarefas dentro da pipeline = jobs
