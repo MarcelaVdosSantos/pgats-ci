@@ -10,7 +10,7 @@ on:
   schedule: 
     # cronograma de execução
     # 1 - minuto, 2 - hora, 3 dia dos Mês, 4 - mês, 5 - dia da semana
-    - cron: '*/3 * * *'
+    - cron: '*/3 * * * *'
       timezone: 'America/Sao_Paulo'
 
 
