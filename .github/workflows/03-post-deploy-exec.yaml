@@ -19,6 +19,8 @@ jobs:
     e2e-tests:
               #máquina onde o job irá rodar / máquina ubuntu na versão mais recente
               runs-on: ubuntu-latest
+              
+              if: ${{ github.event.workflow_run.conclusion == 'success' }} # só executa se a pipeline anterior tiver sido concluída com sucesso
 
               #passos do job
               steps:
