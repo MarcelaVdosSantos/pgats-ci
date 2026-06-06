@@ -7,6 +7,7 @@ name: "Scheduled Execution"
 # gatilho manual = workflow_dispatch
 
 on:
+  workflow_dispatch:
   schedule: 
     # cronograma de execução
     # 1 - minuto, 2 - hora, 3 dia dos Mês, 4 - mês, 5 - dia da semana
@@ -28,7 +29,7 @@ jobs:
                     # instalação do node
                     - uses: actions/setup-node@v4
                       with:
-                        node-version: 24.x
+                        node-version: 20.x
 
                     # instalação do yarn
                     - name: Instalando o Yarn
@@ -40,7 +41,7 @@ jobs:
 
                     # instalação dps browsers do playwright
                     - name: Instalando os browsers do playwright
-                      run: yarn playwright install
+                      run: yarn playwright install --with-deps
 
                     # executar os testes end twwo end - e2e
                     - name: Executando os testes e2e
@@ -51,7 +52,7 @@ jobs:
                       uses: dorny/test-reporter@v3
                       if: ${{ !cancelled() }}       # run this step even if previous step failed
                       with:
-                        name: JEST Tests            # Name of the check run which will be created
+                        name: E2E Tests            # Name of the check run which will be created
                         path: results.xml    # Path to test results
                         #path: reports/jest-*.xml    # Path to test results
                         reporter: jest-junit        # Format of test results    
