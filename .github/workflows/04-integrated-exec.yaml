@@ -81,25 +81,25 @@ jobs:
                   run: yarn run e2e
 
 
-      deploy:
-              runs-on: ubuntu-latest
-              needs: [ unidade, e2e-tests ] # só executa se os jobs de teste unitário e e2e tiverem sido concluídos com sucesso
-              
+    deploy::
+          runs-on: ubuntu-latest
+          needs: [ unidade, e2e-tests ] # só executa se os jobs de teste unitário e e2e tiverem sido concluídos com sucesso
 
-                    # instalação dps browsers do playwright
-                    - name: Instalando os browsers do playwright
-                      run: yarn playwright install
 
-                    # executar os testes end twwo end - e2e
-                    - name: Executando os testes e2e
-                      run: yarn run e2e
+              # instalação dps browsers do playwright
+              - name: Instalando os browsers do playwright
+                run: yarn playwright install
 
-                    # PLUGIN test reporter https://github.com/marketplace/actions/test-reporter
-                    - name: Test Report
+              # executar os testes end twwo end - e2e
+              - name: Executando os testes e2e
+                run: yarn run e2e
+
+                # PLUGIN test reporter https://github.com/marketplace/actions/test-reporter
+              - name: Test Report
                       uses: dorny/test-reporter@v3
                       if: ${{ !cancelled() }}       # run this step even if previous step failed
-                      with:
-                        name: JEST Tests            # Name of the check run which will be created
-                        path: results.xml    # Path to test results
-                        #path: reports/jest-*.xml    # Path to test results
-                        reporter: jest-junit        # Format of test results    
+                with:
+                  name: JEST Tests            # Name of the check run which will be created
+                  path: results.xml    # Path to test results
+                  #path: reports/jest-*.xml    # Path to test results
+                  reporter: jest-junit        # Format of test results    
