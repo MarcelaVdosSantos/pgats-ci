@@ -9,51 +9,51 @@ name: 'Execução por deploy'
 # gatilho conclusão de outra pipeline = workflow_run
 
 on:
-  workflow_run: 
-    workflows: [ 'Execução Manual']
+  workflow_run:
+    workflows: ['Execução Manual']
     types:
       - completed
 # tarefas dentro da pipeline = jobs
-jobs: 
-    # nome do job
-    e2e-tests:
-              #máquina onde o job irá rodar / máquina ubuntu na versão mais recente
-              runs-on: ubuntu-latest
-              
-              if: ${{ github.event.workflow_run.conclusion == 'success' }} # só executa se a pipeline anterior tiver sido concluída com sucesso
+jobs:
+  # nome do job
+  e2e-tests:
+    #máquina onde o job irá rodar / máquina ubuntu na versão mais recente
+    runs-on: ubuntu-latest
 
-              #passos do job
-              steps:
-                    # clone do projeto
-                    - uses: actions/checkout@v4
+    if: ${{ github.event.workflow_run.conclusion == 'success' }} # só executa se a pipeline anterior tiver sido concluída com sucesso
 
-                    # instalação do node
-                    - uses: actions/setup-node@v4
-                      with:
-                        node-version: 24.x
+    #passos do job
+    steps:
+      # clone do projeto
+      - uses: actions/checkout@v4
 
-                    # instalação do yarn
-                    - name: Instalando o Yarn
-                      run: npm install -g yarn
+      # instalação do node
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
 
-                    # instalação das dependências
-                    - name: Instalando dependências
-                      run: yarn
+      # instalação do yarn
+      - name: Instalando o Yarn
+        run: npm install -g yarn
 
-                    # instalação dps browsers do playwright
-                    - name: Instalando os browsers do playwright
-                      run: yarn playwright install
+      # instalação das dependências
+      - name: Instalando dependências
+        run: yarn
 
-                    # executar os testes end twwo end - e2e
-                    - name: Executando os testes e2e
-                      run: yarn run e2e
+      # instalação dps browsers do playwright
+      - name: Instalando os browsers do playwright
+        run: yarn playwright install
 
-                    # PLUGIN test reporter https://github.com/marketplace/actions/test-reporter
-                    - name: Test Report
-                      uses: dorny/test-reporter@v3
-                      if: ${{ !cancelled() }}       # run this step even if previous step failed
-                      with:
-                        name: JEST Tests            # Name of the check run which will be created
-                        path: results.xml    # Path to test results
-                        #path: reports/jest-*.xml    # Path to test results
-                        reporter: jest-junit        # Format of test results    
+      # executar os testes end twwo end - e2e
+      - name: Executando os testes e2e
+        run: yarn run e2e
+
+      # PLUGIN test reporter https://github.com/marketplace/actions/test-reporter
+      - name: Test Report
+        uses: dorny/test-reporter@v3
+        if: ${{ !cancelled() }} # run this step even if previous step failed
+        with:
+          name: JEST Tests # Name of the check run which will be created
+          path: results.xml # Path to test results
+          #path: reports/jest-*.xml    # Path to test results
+          reporter: jest-junit # Format of test results
