@@ -81,7 +81,7 @@ jobs:
                   run: yarn run e2e
 
 
-    deploy::
+    deploy:
           runs-on: ubuntu-latest
           needs: [ unidade, e2e-tests ] # só executa se os jobs de teste unitário e e2e tiverem sido concluídos com sucesso
 
