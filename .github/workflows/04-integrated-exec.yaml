@@ -85,7 +85,7 @@ jobs:
         run: yarn e2e
 
       - name: Salvando relatórios de testes
-        use: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
           path: ./playwright-report
